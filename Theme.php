@@ -69,7 +69,7 @@ class Theme extends BaseV1\Theme{
             $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
         });
         $app->hook('mapasculturais.body:before', function(){
-            echo 'asd';
+            $this->part('header-sniic');
         });
     }
 }
