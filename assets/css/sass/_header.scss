@@ -30,6 +30,24 @@
             vertical-align: middle;
             width: 70px;
             margin-left: 10px;
+            
+        }
+
+        .no-desktop{
+            display:inline-block;
+        }
+        .no-mobile{
+            display:none;
+        }
+
+        @media (max-width: $screen-tablet) {
+            margin:5px 0px;
+            .no-desktop{
+                display:none;
+            }
+            .no-mobile{
+                display:inline-block;
+            }
         }
     }
 
