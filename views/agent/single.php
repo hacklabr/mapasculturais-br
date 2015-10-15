@@ -95,6 +95,7 @@ $this->includeAngularEntityAssets($entity);
             </div>
             <!--.entity-type-->
             <h2><span class="js-editable" data-edit="name" data-original-title="Nome de exibição" data-emptytext="Nome de exibição"><?php echo $entity->name; ?></span></h2>
+            <p class="num_sniic"><span class="label">Nº SNIIC:</span> <?php echo $entity->numSniic; ?></p>
         </div>
     </header>
     <ul class="abas clearfix clear">
@@ -173,6 +174,8 @@ $this->includeAngularEntityAssets($entity);
                             </p>
                         <?php endif; ?>
                         <p><span class="label">Endereço:</span> <span class="js-editable" data-edit="endereco" data-original-title="Endereço" data-emptytext="Insira o endereço" data-showButtons="bottom"><?php echo $entity->endereco ?></span></p>
+                        <p><span class="label">CEP:</span> <span class="js-editable" data-edit="cep" data-original-title="CEP" data-emptytext="Insira o CEP" data-showButtons="bottom"><?php echo $entity->cep ?></span></p>
+                        
                         <?php foreach($app->getRegisteredGeoDivisions() as $geo_division): $metakey = $geo_division->metakey; ?>
                             <p <?php if(!$entity->$metakey) { echo 'style="display:none"'; }?>>
                                 <span class="label"><?php echo $geo_division->name ?>:</span> <span class="js-geo-division-address" data-metakey="<?php echo $metakey ?>"><?php echo $entity->$metakey; ?></span>

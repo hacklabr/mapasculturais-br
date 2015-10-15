@@ -49,7 +49,18 @@ class Theme extends BaseV1\Theme{
                     'validations' => [
                         'required' => 'A tipologia deve ser informada.'
                     ]
+                ],  
+                'cep' => [
+                    'label' => 'CEP',
+                    'private' => function(){
+                        return !$this->publicLocation;
+                    },
                 ],
+                'numSniic' => [
+                    'label' => 'Nº SNIIC:',
+                    'private' => false,
+                ],
+
             ]
         ];
         
