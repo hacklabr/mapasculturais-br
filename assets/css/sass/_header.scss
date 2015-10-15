@@ -32,11 +32,21 @@
             margin-left: 10px;
         }
     }
+
     @media screen and (min-width: $screen-tablet) {
         border-top: 6px solid $brand-accent;
     }
     @media print {
         position: relative;
         border-top: none;
+    }
+}
+
+#about-nav{
+       #secondary-menu li a {
+        font-weight: normal;
+        color: #ccc;
+        font-size: 20px;
+        margin-top: 10px;
     }
 }
