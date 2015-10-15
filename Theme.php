@@ -68,8 +68,9 @@ class Theme extends BaseV1\Theme{
         $app->hook('view.render(agent/<<create|edit>>):before', function(){
             $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
         });
-        $app->hook('mapasculturais.body:before', function(){
+        /*$app->hook('mapasculturais.body:before', function(){
             $this->part('header-sniic');
         });
+        */
     }
 }

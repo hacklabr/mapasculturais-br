@@ -1,0 +1,42 @@
+//
+// Main Header
+// --------------------------------------------------
+
+
+#main-header {
+    position: fixed;
+    width: 100%;
+    z-index: $z-index-main-header;
+    background: #fff;
+    h1 {
+        margin-bottom: 0;
+        padding: 0px;
+        line-height: 1em;
+        margin-top: 10px;
+        
+        a{
+            color: #000;
+            font-weight: bold;
+            font-family: "Open Sans", Helvetica, Arial, sans-serif;
+            span{
+                font-weight:100;
+                color:#9c9aa0;
+            }
+        }
+        
+        img {
+            display: inline-block;
+            max-height: 50px;
+            vertical-align: middle;
+            width: 70px;
+            margin-left: 10px;
+        }
+    }
+    @media screen and (min-width: $screen-tablet) {
+        border-top: 6px solid $brand-accent;
+    }
+    @media print {
+        position: relative;
+        border-top: none;
+    }
+}
