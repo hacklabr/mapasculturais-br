@@ -34,6 +34,60 @@ class Theme extends BaseV1\Theme{
         $app = App::i();
         
         $metadata = [
+            'MapasCulturais\Entities\Space' => [
+                'En_CEP' => [
+                    'label' => 'CEP',
+                ],
+                'En_Nome_Logradouro' => [
+                    'label' => 'Logradouro',
+                ],
+                'En_Num' => [
+                    'label' => 'Número',
+                ],
+                'En_Complemento' => [
+                    'label' => 'Complemento',
+                ],
+                'En_Bairro' => [
+                    'label' => 'Bairro',
+                ],
+                'En_Municipio' => [
+                    'label' => 'Município',
+                ],
+                'En_Estado' => [
+                    'label' => 'Estado',
+                    'type' => 'select',
+                    'options' => array(
+                        'AC'=>'Acre',              
+                        'AL'=>'Alagoas',
+                        'AP'=>'Amapá',             
+                        'AM'=>'Amazonas',
+                        'BA'=>'Bahia',             
+                        'CE'=>'Ceará',
+                        'DF'=>'Distrito Federal',  
+                        'ES'=>'Espírito Santo',
+                        'GO'=>'Goiás',             
+                        'MA'=>'Maranhão',
+                        'MT'=>'Mato Grosso',       
+                        'MS'=>'Mato Grosso do Sul',
+                        'MG'=>'Minas Gerais',      
+                        'PA'=>'Pará',
+                        'PB'=>'Paraíba',           
+                        'PR'=>'Paraná',
+                        'PE'=>'Pernambuco',        
+                        'PI'=>'Piauí',
+                        'RJ'=>'Rio de Janeiro',    
+                        'RN'=>'Rio Grande do Norte',
+                        'RS'=>'Rio Grande do Sul', 
+                        'RO'=>'Rondônia',
+                        'RR'=>'Roraima',           
+                        'SC'=>'Santa Catarina',
+                        'SP'=>'São Paulo',         
+                        'SE'=>'Sergipe',
+                        'TO'=>'Tocantins',
+                    )
+                ],
+            ],
+
             'MapasCulturais\Entities\Agent' => [
                 'sniic_tipo_nivel_1' => [
                     'label' => 'Tipologia Nível 1',
