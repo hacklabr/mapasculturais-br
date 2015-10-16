@@ -1,0 +1,73 @@
+
+#header-sniic{
+    background:#000;
+    width:100%;
+    height: 40px;
+    top: 0px;
+    position: fixed;
+    z-index: 9999;
+    .logo-sniic{
+       -webkit-filter: grayscale(1);
+        filter: grayscale(1);    
+    }
+
+    h1{
+        a{
+            color:#fff;
+        }
+    }   
+
+    ul#secondary-menu{
+        float:right;
+        margin-right:20px;
+        
+        li{
+            a{
+                color:#ffffff;
+                padding: 10px;
+            }
+        }
+    }
+}
+
+ .infos{
+     p.endereco{
+        margin-top: -20px;
+        margin-bottom: 20px;
+     }
+ }
+
+ #small-brand{
+    img{
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    a{
+        color: #000;
+        font-weight: bold;
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        span{
+            font-weight:100;
+            color:#9c9aa0;
+        }
+    }
+
+    .no-desktop{
+            display:inline-block;
+        }
+        .no-mobile{
+            display:none;
+        }
+
+        @media (max-width: $screen-tablet) {
+            margin:5px 0px;
+            .no-desktop{
+                display:none;
+            }
+            .no-mobile{
+                display:inline-block;
+            }
+        }
+        
+ }
