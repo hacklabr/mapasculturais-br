@@ -143,6 +143,7 @@ class Theme extends BaseV1\Theme{
         parent::_init();
         
         $app = App::i();
+        $this->enqueueScript('app', 'endereco', 'js/endereco.js');
         $app->hook('view.render(agent/<<create|edit>>):before', function(){
             $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
         });
