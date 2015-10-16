@@ -64,15 +64,15 @@ $this->includeAngularEntityAssets($entity);
             <!--.entity-type-->
             
             
-            
+            <?php if($this->isEditable()): ?>
             <div class="entity-type agent-type" ng-controller="AgentTypesController">
                 <div class="icon icon-agent"></div>
                 <a class="editable" ng-click="editBox.open('eb-tipologia', $event)">{{data.tipologia3 ? data.tipologia3 : 'Escolha uma tipologia'}}</a>
                 
                 <edit-box id="eb-tipologia" position="bottom" cancel-label="Cancelar" submit-label="Enviar" on-submit="setTypes" on-cancel="resetValues" close-on-cancel="1">
-                    <input type="hidden" id="sniic_tipo_nivel_1" class="js-editable" data-edit="sniic_tipo_nivel_1" data-emptytext="">
-                    <input type="hidden" id="sniic_tipo_nivel_2" class="js-editable" data-edit="sniic_tipo_nivel_2" data-emptytext="">
-                    <input type="hidden" id="sniic_tipo_nivel_3" class="js-editable" data-edit="sniic_tipo_nivel_3" data-emptytext="">
+                    <input type="hidden" id="tipologia_nivel1" class="js-editable" data-edit="tipologia_nivel1" data-emptytext="">
+                    <input type="hidden" id="tipologia_nivel2" class="js-editable" data-edit="tipologia_nivel2" data-emptytext="">
+                    <input type="hidden" id="tipologia_nivel3" class="js-editable" data-edit="tipologia_nivel3" data-emptytext="">
                     <label>
                         nível 1: 
                         <select ng-model="data._tipo1" ng-change="set(1)">
@@ -94,6 +94,12 @@ $this->includeAngularEntityAssets($entity);
                 </edit-box>
             </div>
             <!--.entity-type-->
+            <?php else: ?>
+                <div class="entity-type agent-type">
+                    <div class="icon icon-agent"></div>
+                    <a href="#"><?php echo $entity->tipologia_nivel3 ?></a>
+                </div>
+            <?php endif; ?>
             <h2><span class="js-editable" data-edit="name" data-original-title="Nome de exibição" data-emptytext="Nome de exibição"><?php echo $entity->name; ?></span></h2>
         </div>
     </header>

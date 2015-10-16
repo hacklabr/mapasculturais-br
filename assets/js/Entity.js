@@ -149,9 +149,9 @@
         $scope.editBox = EditBox;
         
         var types = MapasCulturais.agentTypes;
-        var n1 = MapasCulturais.entity.sniic_tipo_nivel_1;
-        var n2 = MapasCulturais.entity.sniic_tipo_nivel_2;
-        var n3 = MapasCulturais.entity.sniic_tipo_nivel_3;
+        var n1 = MapasCulturais.entity.tipologia_nivel1;
+        var n2 = MapasCulturais.entity.tipologia_nivel2;
+        var n3 = MapasCulturais.entity.tipologia_nivel3;
         
         types.__values = Object.keys(types);
         types.__values.forEach(function(val){
@@ -189,9 +189,9 @@
         };
         
         var setEditables = function(){
-            $('#sniic_tipo_nivel_1').first().editable('setValue', $scope.data.tipologia1);
-            $('#sniic_tipo_nivel_2').first().editable('setValue', $scope.data.tipologia2);
-            $('#sniic_tipo_nivel_3').first().editable('setValue', $scope.data.tipologia3);  
+            $('#tipologia_nivel1').first().editable('setValue', $scope.data.tipologia1);
+            $('#tipologia_nivel2').first().editable('setValue', $scope.data.tipologia2);
+            $('#tipologia_nivel3').first().editable('setValue', $scope.data.tipologia3);  
         };
         
         setEditables();

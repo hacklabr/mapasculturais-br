@@ -23,9 +23,9 @@ class Theme extends BaseV1\Theme{
     
     public function addEntityToJs(\MapasCulturais\Entity $entity) {
         parent::addEntityToJs($entity);
-        $this->jsObject['entity']['sniic_tipo_nivel_1'] = $entity->sniic_tipo_nivel_1;
-        $this->jsObject['entity']['sniic_tipo_nivel_2'] = $entity->sniic_tipo_nivel_2;
-        $this->jsObject['entity']['sniic_tipo_nivel_3'] = $entity->sniic_tipo_nivel_3;
+        $this->jsObject['entity']['tipologia_nivel1'] = $entity->tipologia_nivel1;
+        $this->jsObject['entity']['tipologia_nivel2'] = $entity->tipologia_nivel2;
+        $this->jsObject['entity']['tipologia_nivel3'] = $entity->tipologia_nivel3;
     }
     
     public function register() {
@@ -35,15 +35,15 @@ class Theme extends BaseV1\Theme{
         
         $metadata = [
             'MapasCulturais\Entities\Agent' => [
-                'sniic_tipo_nivel_1' => [
+                'tipologia_nivel1' => [
                     'label' => 'Tipologia Nível 1',
                     'private' => false
                 ],
-                'sniic_tipo_nivel_2' => [
+                'tipologia_nivel2' => [
                     'label' => 'Tipologia Nível 2',
                     'private' => false
                 ],
-                'sniic_tipo_nivel_3' => [
+                'tipologia_nivel3' => [
                     'label' => 'Tipologia Nível 3',
                     'private' => false,
                     'validations' => [
