@@ -65,6 +65,7 @@ $child_entity_request = isset($child_entity_request) ? $child_entity_request : n
             <?php $this->part('entity-parent', ['entity' => $entity, 'child_entity_request' => $child_entity_request]) ?>
 
             <h2><span class="js-editable" data-edit="name" data-original-title="Nome de exibição" data-emptytext="Nome de exibição"><?php echo $entity->name; ?></span></h2>
+            <p class="num_sniic"><span class="label">Nº SNIIC:</span> <?php echo $entity->num_sniic; ?></p>
         </div>
     </header>
     <ul class="abas clearfix">

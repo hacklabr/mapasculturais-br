@@ -44,7 +44,26 @@ class Theme extends BaseV1\Theme{
         $app = App::i();
 
         $metadata = [
+            'MapasCulturais\Entities\Event' => [
+                'num_sniic' => [
+                    'label' => 'Nº SNIIC:',
+                    'private' => false
+                ],
+            ],
+
+            'MapasCulturais\Entities\Project' => [
+                'num_sniic' => [
+                    'label' => 'Nº SNIIC:',
+                    'private' => false
+                ],
+            ],
+
             'MapasCulturais\Entities\Space' => [
+                'num_sniic' => [
+                    'label' => 'Nº SNIIC:',
+                    'private' => false
+                ],
+
                 'En_CEP' => [
                     'label' => 'CEP',
                 ],
@@ -67,31 +86,31 @@ class Theme extends BaseV1\Theme{
                     'label' => 'Estado',
                     'type' => 'select',
                     'options' => array(
-                        'AC'=>'Acre',              
+                        'AC'=>'Acre',
                         'AL'=>'Alagoas',
-                        'AP'=>'Amapá',             
+                        'AP'=>'Amapá',
                         'AM'=>'Amazonas',
-                        'BA'=>'Bahia',             
+                        'BA'=>'Bahia',
                         'CE'=>'Ceará',
-                        'DF'=>'Distrito Federal',  
+                        'DF'=>'Distrito Federal',
                         'ES'=>'Espírito Santo',
-                        'GO'=>'Goiás',             
+                        'GO'=>'Goiás',
                         'MA'=>'Maranhão',
-                        'MT'=>'Mato Grosso',       
+                        'MT'=>'Mato Grosso',
                         'MS'=>'Mato Grosso do Sul',
-                        'MG'=>'Minas Gerais',      
+                        'MG'=>'Minas Gerais',
                         'PA'=>'Pará',
-                        'PB'=>'Paraíba',           
+                        'PB'=>'Paraíba',
                         'PR'=>'Paraná',
-                        'PE'=>'Pernambuco',        
+                        'PE'=>'Pernambuco',
                         'PI'=>'Piauí',
-                        'RJ'=>'Rio de Janeiro',    
+                        'RJ'=>'Rio de Janeiro',
                         'RN'=>'Rio Grande do Norte',
-                        'RS'=>'Rio Grande do Sul', 
+                        'RS'=>'Rio Grande do Sul',
                         'RO'=>'Rondônia',
-                        'RR'=>'Roraima',           
+                        'RR'=>'Roraima',
                         'SC'=>'Santa Catarina',
-                        'SP'=>'São Paulo',         
+                        'SP'=>'São Paulo',
                         'SE'=>'Sergipe',
                         'TO'=>'Tocantins',
                     )
@@ -99,6 +118,11 @@ class Theme extends BaseV1\Theme{
             ],
 
             'MapasCulturais\Entities\Agent' => [
+                'num_sniic' => [
+                    'label' => 'Nº SNIIC:',
+                    'private' => false
+                ],
+
                 'tipologia_nivel1' => [
                     'label' => 'Tipologia Nível 1',
                     'private' => false
@@ -187,11 +211,6 @@ class Theme extends BaseV1\Theme{
                         'TO'=>'Tocantins',
                     )
                 ],
-                'num_sniic' => [
-                    'label' => 'Nº SNIIC:',
-                    'private' => false
-                ],
-
             ]
         ];
 
@@ -215,5 +234,12 @@ class Theme extends BaseV1\Theme{
             $this->part('header-sniic');
         });
         */
+
+        $app->hook('entity(<<Agent|Space|Event|Project>>).save:after', function() use ($app){
+            if(!$this->getValidationErrors()){
+                $num = strtoupper(substr($this->entityType, 0, 2)) . '-' . $this->id;
+                $this->num_sniic = $num;
+            }
+        });
     }
 }
