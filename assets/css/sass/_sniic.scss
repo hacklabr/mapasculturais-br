@@ -36,3 +36,38 @@
         margin-bottom: 20px;
      }
  }
+
+ #small-brand{
+    img{
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    a{
+        color: #000;
+        font-weight: bold;
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        span{
+            font-weight:100;
+            color:#9c9aa0;
+        }
+    }
+
+    .no-desktop{
+            display:inline-block;
+        }
+        .no-mobile{
+            display:none;
+        }
+
+        @media (max-width: $screen-tablet) {
+            margin:5px 0px;
+            .no-desktop{
+                display:none;
+            }
+            .no-mobile{
+                display:inline-block;
+            }
+        }
+        
+ }
