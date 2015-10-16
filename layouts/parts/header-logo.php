@@ -1,6 +1,7 @@
 <h1 id="brand-logo">
     <a href="<?php echo $app->getBaseUrl() ?>">
         <img src="<?php $this->asset('img/logo-mapas-culturais-br.svg'); ?>" class="logo-sniic"/>
-        Mapas<span>.cultura.gov.br</span>
+        <div class="no-desktop"> Mapas<span>.cultura.gov.br</span></div>
+        <div class="no-mobile"> Mapas<span>.cultura</span></div>
     </a>
 </h1>
