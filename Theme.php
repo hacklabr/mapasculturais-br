@@ -30,19 +30,19 @@ class Theme extends BaseV1\Theme{
     static function getThemeFolder() {
         return __DIR__;
     }
-    
+
     public function addEntityToJs(\MapasCulturais\Entity $entity) {
         parent::addEntityToJs($entity);
         $this->jsObject['entity']['tipologia_nivel1'] = $entity->tipologia_nivel1;
         $this->jsObject['entity']['tipologia_nivel2'] = $entity->tipologia_nivel2;
         $this->jsObject['entity']['tipologia_nivel3'] = $entity->tipologia_nivel3;
     }
-    
+
     public function register() {
         parent::register();
-        
+
         $app = App::i();
-        
+
         $metadata = [
             'MapasCulturais\Entities\Agent' => [
                 'tipologia_nivel1' => [
@@ -59,7 +59,7 @@ class Theme extends BaseV1\Theme{
                     'validations' => [
                         'required' => 'A tipologia deve ser informada.'
                     ]
-                ],  
+                ],
                 'En_CEP' => [
                     'label' => 'CEP',
                     'private' => function(){
@@ -104,43 +104,43 @@ class Theme extends BaseV1\Theme{
                     'type' => 'select',
 
                     'options' => array(
-                        'AC'=>'Acre',              
+                        'AC'=>'Acre',
                         'AL'=>'Alagoas',
-                        'AP'=>'Amapá',             
+                        'AP'=>'Amapá',
                         'AM'=>'Amazonas',
-                        'BA'=>'Bahia',             
+                        'BA'=>'Bahia',
                         'CE'=>'Ceará',
-                        'DF'=>'Distrito Federal',  
+                        'DF'=>'Distrito Federal',
                         'ES'=>'Espírito Santo',
-                        'GO'=>'Goiás',             
+                        'GO'=>'Goiás',
                         'MA'=>'Maranhão',
-                        'MT'=>'Mato Grosso',       
+                        'MT'=>'Mato Grosso',
                         'MS'=>'Mato Grosso do Sul',
-                        'MG'=>'Minas Gerais',      
+                        'MG'=>'Minas Gerais',
                         'PA'=>'Pará',
-                        'PB'=>'Paraíba',           
+                        'PB'=>'Paraíba',
                         'PR'=>'Paraná',
-                        'PE'=>'Pernambuco',        
+                        'PE'=>'Pernambuco',
                         'PI'=>'Piauí',
-                        'RJ'=>'Rio de Janeiro',    
+                        'RJ'=>'Rio de Janeiro',
                         'RN'=>'Rio Grande do Norte',
-                        'RS'=>'Rio Grande do Sul', 
+                        'RS'=>'Rio Grande do Sul',
                         'RO'=>'Rondônia',
-                        'RR'=>'Roraima',           
+                        'RR'=>'Roraima',
                         'SC'=>'Santa Catarina',
-                        'SP'=>'São Paulo',         
+                        'SP'=>'São Paulo',
                         'SE'=>'Sergipe',
                         'TO'=>'Tocantins',
                     )
                 ],
-                'numSniic' => [
+                'num_sniic' => [
                     'label' => 'Nº SNIIC:',
-                    'private' => false,
+                    'private' => false
                 ],
 
             ]
         ];
-        
+
         foreach($metadata as $entity_class => $metas){
             foreach($metas as $key => $cfg){
                 $def = new \MapasCulturais\Definitions\Metadata($key, $cfg);
@@ -148,10 +148,10 @@ class Theme extends BaseV1\Theme{
             }
         }
     }
-    
+
     protected function _init() {
         parent::_init();
-        
+
         $app = App::i();
         $app->hook('view.render(agent/<<create|edit>>):before', function(){
             $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
