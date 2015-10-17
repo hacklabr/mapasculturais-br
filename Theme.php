@@ -317,4 +317,56 @@ class Theme extends BaseV1\Theme{
             }
         });
     }
+    
+    function getOneEntity($entity_class) {
+        $app = \MapasCulturais\App::i();
+
+        $cache_id = __METHOD__ . ':' . $entity_class;
+
+        if($app->cache->contains($cache_id)){
+            return $app->cache->fetch($cache_id);
+        }
+
+        $dql = "
+        SELECT
+           e.id
+        FROM
+           $entity_class e
+        WHERE
+           e.status > 0
+           
+       ";
+
+        if ($entity_class === 'MapasCulturais\Entities\Event') {
+            $events = $app->controller('Event')->apiQueryByLocation(array(
+                '@from' => date('Y-m-d'),
+                '@to' => date('Y-m-d', time() + 28 * 24 * 3600),
+                '@select' => 'id'
+            ));
+            $event_ids = array_map(function($item) {
+                return $item['id'];
+            }, $events);
+
+            if ($event_ids)
+                $dql .= ' AND e.id IN (' . implode(',', $event_ids) . ')';
+            else
+                return null;
+        }
+
+        $ids = $app->em->createQuery($dql)
+                ->useQueryCache(true)
+                ->setResultCacheLifetime(60 * 5)
+                ->getScalarResult();
+
+        if ($ids) {
+            $id = $ids[array_rand($ids)]['id'];
+            $result = $app->repo($entity_class)->find($id);
+        } else {
+            $result = null;
+        }
+
+        $app->cache->save($cache_id, $result, 120);
+
+        return $result;
+    }
 }

@@ -12,13 +12,13 @@ $class_project = 'MapasCulturais\Entities\Project';
 $class_file = 'MapasCulturais\Entities\File';
 
 $num_events             = $this->getNumEvents();
-$num_verified_events    = $this->getNumVerifiedEvents();
+//$num_verified_events    = $this->getNumVerifiedEvents();
 $num_agents             = $this->getNumEntities($class_agent);
-$num_verified_agents    = $this->getNumEntities($class_agent, true);
+//$num_verified_agents    = $this->getNumEntities($class_agent, true);
 $num_spaces             = $this->getNumEntities($class_space);
-$num_verified_spaces    = $this->getNumEntities($class_space, true);
+//$num_verified_spaces    = $this->getNumEntities($class_space, true);
 $num_projects           = $this->getNumEntities($class_project);
-$num_verified_projects  = $this->getNumEntities($class_project, true);
+//$num_verified_projects  = $this->getNumEntities($class_project, true);
 
 $event_linguagens = array_values($app->getRegisteredTaxonomy($class_event, 'linguagem')->restrictedTerms);
 $agent_areas = array_values($app->getRegisteredTaxonomy($class_agent, 'area')->restrictedTerms);
@@ -34,22 +34,22 @@ $project_types = $app->getRegisteredEntityTypes($class_project);
 
 $agent_img_attributes = $space_img_attributes = $event_img_attributes = $project_img_attributes = 'class="random-feature no-image"';
 
-$agent = $this->getOneVerifiedEntity($class_agent);
+$agent = $this->getOneEntity($class_agent);
 if($agent && $img_url = $this->getEntityFeaturedImageUrl($agent)){
     $agent_img_attributes = 'class="random-feature" style="background-image: url(' . $img_url . ');"';
 }
 
-$space = $this->getOneVerifiedEntity($class_space);
+$space = $this->getOneEntity($class_space);
 if($space && $img_url = $this->getEntityFeaturedImageUrl($space)){
     $space_img_attributes = 'class="random-feature" style="background-image: url(' . $img_url . ');"';
 }
 
-$event = $this->getOneVerifiedEntity($class_event);
+$event = $this->getOneEntity($class_event);
 if($event && $img_url = $this->getEntityFeaturedImageUrl($event)){
     $event_img_attributes = 'class="random-feature" style="background-image: url(' . $img_url . ');"';
 }
 
-$project = $this->getOneVerifiedEntity($class_project);
+$project = $this->getOneEntity($class_project);
 if($project && $img_url = $this->getEntityFeaturedImageUrl($project)){
     $project_img_attributes = 'class="random-feature" style="background-image: url(' . $img_url . ');"';
 }
@@ -95,10 +95,7 @@ $url_search_projects = $this->searchProjectsUrl;
                 <div class="statistic"><?php echo $num_agents ?></div>
                 <div class="statistic-label">agentes cadastrados</div>
             </div>
-            <div class="statistics">
-                <div class="statistic"><?php echo $num_verified_agents ?></div>
-                <div class="statistic-label">agentes da <?php $this->dict('home: abbreviation'); ?></div>
-            </div>
+            
         </div>
         <p><?php $this->dict('home: agents') ?></p>
         <h4>Encontre agentes por</h4>
@@ -147,10 +144,7 @@ $url_search_projects = $this->searchProjectsUrl;
                 <div class="statistic"><?php echo $num_spaces ?></div>
                 <div class="statistic-label">espaços cadastrados</div>
             </div>
-            <div class="statistics">
-                <div class="statistic"><?php echo $num_verified_spaces; ?></div>
-                <div class="statistic-label">espaços da <?php $this->dict('home: abbreviation'); ?></div>
-            </div>
+            
         </div>
         <p><?php $this->dict('home: spaces'); ?></p>
         <h4>Encontre espaços por</h4>
@@ -199,10 +193,7 @@ $url_search_projects = $this->searchProjectsUrl;
                 <div class="statistic"><?php echo $num_events ?></div>
                 <div class="statistic-label">eventos agendados</div>
             </div>
-            <div class="statistics">
-                <div class="statistic"><?php echo $num_verified_events ?></div>
-                <div class="statistic-label">eventos da <?php $this->dict('home: abbreviation'); ?></div>
-            </div>
+            
         </div>
         <p><?php $this->dict('home: events') ?></p>
         <h4>Encontre eventos por</h4>
@@ -243,10 +234,7 @@ $url_search_projects = $this->searchProjectsUrl;
                 <div class="statistic"><?php echo $num_projects; ?></div>
                 <div class="statistic-label">projetos cadastrados</div>
             </div>
-            <div class="statistics">
-                <div class="statistic"><?php echo $num_verified_projects; ?></div>
-                <div class="statistic-label">projetos da <?php $this->dict('home: abbreviation'); ?></div>
-            </div>
+            
         </div>
         <p><?php $this->dict('home: projects') ?></p>
         <h4>Encontre projetos por</h4>
