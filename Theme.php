@@ -229,6 +229,8 @@ class Theme extends BaseV1\Theme{
 
         $app = App::i();
         $this->enqueueScript('app', 'endereco', 'js/endereco.js');
+        $this->enqueueScript('app', 'num-sniic', 'js/num-sniic.js');
+
         $app->hook('view.render(agent/<<create|edit>>):before', function(){
             $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
         });

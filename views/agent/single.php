@@ -101,7 +101,7 @@ $this->includeAngularEntityAssets($entity);
                 </div>
             <?php endif; ?>
             <h2><span class="js-editable" data-edit="name" data-original-title="Nome de exibição" data-emptytext="Nome de exibição"><?php echo $entity->name; ?></span></h2>
-            <p class="num_sniic"><span class="label">Nº SNIIC:</span> <?php echo $entity->num_sniic ? $entity->num_sniic : "Preencha os campos obrigatorios e clique em salvar para gerar"; ?></p>
+            <p class="num_sniic"><span class="label">Nº SNIIC:</span> <span id="num-sniic"><?php echo $entity->num_sniic ? $entity->num_sniic : "Preencha os campos obrigatorios e clique em salvar para gerar"; ?></span></p>
         </div>
     </header>
     <ul class="abas clearfix clear">
@@ -170,7 +170,7 @@ $this->includeAngularEntityAssets($entity);
                     </div>
                     <!--.mapa-->
                     <div class="infos">
-                        <input type="hidden" class="js-editable" id="endereco" data-edit="endereco" data-original-title="Endereço" data-emptytext="Insira o endereço" data-showButtons="bottom" value="<?php echo $entity->endereco ?>" >
+                        <input type="hidden" class="js-editable" id="endereco" data-edit="endereco" data-original-title="Endereço" data-emptytext="Insira o endereço" data-showButtons="bottom" value="<?php echo $entity->endereco ?>" data-value="<?php echo $entity->endereco ?>">
                         <p class="endereco"><span class="label">Endereço:</span> <span class="js-endereco"><?php echo $entity->endereco ?></span></p>
                         <p><span class="label">CEP:</span> <span class="js-editable" id="En_CEP" data-edit="En_CEP" data-original-title="CEP" data-emptytext="Insira o CEP" data-showButtons="bottom"><?php echo $entity->En_CEP ?></span></p>
                         <p><span class="label">Logradouro:</span> <span class="js-editable" id="En_Nome_Logradouro" data-edit="En_Nome_Logradouro" data-original-title="Logradouro" data-emptytext="Insira o logradouro" data-showButtons="bottom"><?php echo $entity->En_Nome_Logradouro ?></span></p>
