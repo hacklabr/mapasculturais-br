@@ -154,10 +154,7 @@ class Theme extends BaseV1\Theme{
                 ],
                 'tipologia_nivel3' => [
                     'label' => 'Tipologia Nível 3',
-                    'private' => false,
-                    'validations' => [
-                        'required' => 'A tipologia deve ser informada.'
-                    ]
+                    'private' => false
                 ],
                 'En_CEP' => [
                     'label' => 'CEP',
