@@ -28,6 +28,12 @@ $(function(){
             $('#En_Bairro').editable('setValue', r.bairro);
             $('#En_Municipio').editable('setValue', r.localidade);
             $('#En_Estado').editable('setValue', r.uf);
+            
+            $('#En_Nome_Logradouro, #En_Bairro, #En_Municipio, #En_Estado').each(function(){
+                $(this).parent().find('.danger.hltip').remove();
+            });
+            
+            
             concatena_enderco();
         });
 

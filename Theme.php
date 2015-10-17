@@ -66,28 +66,46 @@ class Theme extends BaseV1\Theme{
                     'label' => 'Nº SNIIC:',
                     'private' => false
                 ],
-
                 'En_CEP' => [
                     'label' => 'CEP',
+                    'validations' => array(
+                        'required' => 'O CEP é obrigatório.',
+                    )
                 ],
                 'En_Nome_Logradouro' => [
                     'label' => 'Logradouro',
+                    'validations' => array(
+                        'required' => 'O nome do logradouro é obrigatório.',
+                    )
                 ],
                 'En_Num' => [
                     'label' => 'Número',
+                    'validations' => array(
+                        'required' => 'O número é obrigatório.',
+                    )
                 ],
                 'En_Complemento' => [
                     'label' => 'Complemento',
                 ],
                 'En_Bairro' => [
                     'label' => 'Bairro',
+                    'validations' => array(
+                        'required' => 'O bairro é obrigatório.',
+                    )
                 ],
                 'En_Municipio' => [
                     'label' => 'Município',
+                    'validations' => array(
+                        'required' => 'O município é obrigatório.',
+                    )
                 ],
                 'En_Estado' => [
                     'label' => 'Estado',
+                    'validations' => array(
+                        'required' => 'O Estado é obrigatório',
+                    ),
                     'type' => 'select',
+
                     'options' => array(
                         'AC'=>'Acre',
                         'AL'=>'Alagoas',
@@ -146,18 +164,27 @@ class Theme extends BaseV1\Theme{
                     'private' => function(){
                         return !$this->publicLocation;
                     },
+                    'validations' => array(
+                        'required' => 'O CEP é obrigatório.',
+                    )
                 ],
                 'En_Nome_Logradouro' => [
                     'label' => 'Logradouro',
                     'private' => function(){
                         return !$this->publicLocation;
                     },
+                    'validations' => array(
+                        'required' => 'O nome do logradouro é obrigatório.',
+                    )
                 ],
                 'En_Num' => [
                     'label' => 'Número',
                     'private' => function(){
                         return !$this->publicLocation;
                     },
+                    'validations' => array(
+                        'required' => 'O número é obrigatório.',
+                    )
                 ],
                 'En_Complemento' => [
                     'label' => 'Complemento',
@@ -170,18 +197,27 @@ class Theme extends BaseV1\Theme{
                     'private' => function(){
                         return !$this->publicLocation;
                     },
+                    'validations' => array(
+                        'required' => 'O bairro é obrigatório.',
+                    )
                 ],
                 'En_Municipio' => [
                     'label' => 'Município',
                     'private' => function(){
                         return !$this->publicLocation;
                     },
+                    'validations' => array(
+                        'required' => 'O município é obrigatório.',
+                    )
                 ],
                 'En_Estado' => [
                     'label' => 'Estado',
                     'private' => function(){
                         return !$this->publicLocation;
                     },
+                    'validations' => array(
+                        'required' => 'O Estado é obrigatório',
+                    ),
                     'type' => 'select',
 
                     'options' => array(
@@ -222,6 +258,40 @@ class Theme extends BaseV1\Theme{
                 $def = new \MapasCulturais\Definitions\Metadata($key, $cfg);
                 $app->registerMetadata($def, $entity_class);
             }
+        }
+        
+        
+        /*
+         * @TODO: remover isto depois de resolver o bug das taxonomias existentes em um tema e inexistes noutro.
+         * O mapas culturais deve ignorar as taxonomias não registradas.
+         */
+        
+        $taxonomies = [
+            // Atuação e Articulação
+            'contemplado_edital' => 'Editais do Ministério da Cultura em que foi contemplado',
+            'acao_estruturante' => 'Ações Estruturantes',
+            'publico_participante' => 'Públicos que participam das ações',
+            'local_realizacao' => 'Locais onde são realizadas as ações culturais',
+            'area_atuacao' => 'Área de experiência e temas',
+            'instancia_representacao_minc' => 'Instância de representação junto ao Ministério da Cultura',
+            // Economia Viva
+            'ponto_infra_estrutura' => '',
+            'ponto_equipamentos' => '',
+            'ponto_recursos_humanos' => '',
+            'ponto_hospedagem' => '',
+            'ponto_deslocamento' => '',
+            'ponto_comunicacao' => '',
+            'ponto_sustentabilidade' => '',
+            // Formação
+            'metodologias_areas' => ''
+        ];
+
+        $id = 10;
+
+        foreach ($taxonomies as $slug => $description){
+            $id++;
+            $def = new \MapasCulturais\Definitions\Taxonomy($id, $slug, $description);
+            $app->registerTaxonomy('MapasCulturais\Entities\Agent', $def);
         }
     }
 
