@@ -129,7 +129,7 @@ $this->includeMapAssets();
                 </div>
                 <!--.entity-type-->
                 <h2><span class="js-editable" data-edit="name" data-original-title="Nome de exibição" data-emptytext="Nome de exibição"><?php echo $entity->name; ?></span></h2>
-                <p class="num_sniic"><span class="label">Nº SNIIC:</span> <?php echo $entity->num_sniic ? $entity->num_sniic : "Preencha os campos obrigatorios e clique em salvar para gerar"; ?></p>
+                <p class="num_sniic"><span class="label">Nº SNIIC:</span> <span id="num-sniic"><?php echo $entity->num_sniic ? $entity->num_sniic : "Preencha os campos obrigatorios e clique em salvar para gerar"; ?></span></p>
                 <?php if ($this->isEditable() || $entity->subTitle): ?>
                 <h4 class="event-subtitle">
                     <span class="js-editable" data-edit="subTitle" data-original-title="Subtítulo" data-emptytext="Insira um subtítulo para o evento" data-tpl='<input tyle="text" maxlength="140"></textarea>'><?php echo $entity->subTitle; ?></span>
