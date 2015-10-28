@@ -313,6 +313,20 @@ class Theme extends BaseV1\Theme{
                 $this->num_sniic = $num;
             }
         });
+        
+        // adiciona o join do metadado
+		$app->hook('repo(<<*>>).getIdsByKeywordDQL.join', function(&$joins, $keyword){
+			$joins .= "
+				LEFT JOIN 
+					e.__metadata num_sniic 
+				WITH 
+					num_sniic.key = 'num_sniic'";
+		});
+
+		// filtra pelo valor do keyword
+		$app->hook('repo(<<*>>).getIdsByKeywordDQL.where', function(&$where, $keyword){
+			$where .= "lower(num_sniic.value) LIKE lower(:keyword)";
+		});
     }
     
     function getOneEntity($entity_class) {
