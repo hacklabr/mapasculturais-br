@@ -325,7 +325,7 @@ class Theme extends BaseV1\Theme{
 
 		// filtra pelo valor do keyword
 		$app->hook('repo(<<*>>).getIdsByKeywordDQL.where', function(&$where, $keyword){
-			$where .= "lower(num_sniic.value) LIKE lower(:keyword)";
+			$where .= "OR lower(num_sniic.value) LIKE lower(:keyword)";
 		});
     }
     
