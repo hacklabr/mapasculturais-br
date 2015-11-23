@@ -1,9 +1,9 @@
 <?php
 namespace MapasBR;
-use MapasCulturais\Themes\BaseV1;
+use BaseMinc;
 use MapasCulturais\App;
 
-class Theme extends BaseV1\Theme{
+class Theme extends BaseMinc\Theme{
 
     protected static function _getTexts(){
         return array(
@@ -40,210 +40,35 @@ class Theme extends BaseV1\Theme{
         $this->jsObject['entity']['tipologia_nivel3'] = $entity->tipologia_nivel3;
     }
 
-    public function register() {
-        parent::register();
-
-        $app = App::i();
-
-        $metadata = [
-            'MapasCulturais\Entities\Event' => [
-                'num_sniic' => [
-                    'label' => 'Nº SNIIC:',
-                    'private' => false
-                ],
-            ],
-
-            'MapasCulturais\Entities\Project' => [
-                'num_sniic' => [
-                    'label' => 'Nº SNIIC:',
-                    'private' => false
-                ],
-            ],
-
-            'MapasCulturais\Entities\Space' => [
-                'num_sniic' => [
-                    'label' => 'Nº SNIIC:',
-                    'private' => false
-                ],
-
-                'En_CEP' => [
-                    'label' => 'CEP',
-                ],
-                'En_Nome_Logradouro' => [
-                    'label' => 'Logradouro',
-                ],
-                'En_Num' => [
-                    'label' => 'Número',
-                ],
-                'En_Complemento' => [
-                    'label' => 'Complemento',
-                ],
-                'En_Bairro' => [
-                    'label' => 'Bairro',
-                ],
-                'En_Municipio' => [
-                    'label' => 'Município',
-                ],
-                'En_Estado' => [
-                    'label' => 'Estado',
-                    'type' => 'select',
-                    'options' => array(
-                        'AC'=>'Acre',
-                        'AL'=>'Alagoas',
-                        'AP'=>'Amapá',
-                        'AM'=>'Amazonas',
-                        'BA'=>'Bahia',
-                        'CE'=>'Ceará',
-                        'DF'=>'Distrito Federal',
-                        'ES'=>'Espírito Santo',
-                        'GO'=>'Goiás',
-                        'MA'=>'Maranhão',
-                        'MT'=>'Mato Grosso',
-                        'MS'=>'Mato Grosso do Sul',
-                        'MG'=>'Minas Gerais',
-                        'PA'=>'Pará',
-                        'PB'=>'Paraíba',
-                        'PR'=>'Paraná',
-                        'PE'=>'Pernambuco',
-                        'PI'=>'Piauí',
-                        'RJ'=>'Rio de Janeiro',
-                        'RN'=>'Rio Grande do Norte',
-                        'RS'=>'Rio Grande do Sul',
-                        'RO'=>'Rondônia',
-                        'RR'=>'Roraima',
-                        'SC'=>'Santa Catarina',
-                        'SP'=>'São Paulo',
-                        'SE'=>'Sergipe',
-                        'TO'=>'Tocantins',
-                    )
-                ],
-            ],
-
-            'MapasCulturais\Entities\Agent' => [
-                'num_sniic' => [
-                    'label' => 'Nº SNIIC:',
-                    'private' => false
-                ],
-
-                'tipologia_nivel1' => [
-                    'label' => 'Tipologia Nível 1',
-                    'private' => false
-                ],
-                'tipologia_nivel2' => [
-                    'label' => 'Tipologia Nível 2',
-                    'private' => false
-                ],
-                'tipologia_nivel3' => [
-                    'label' => 'Tipologia Nível 3',
-                    'private' => false,
-                    'validations' => [
-                        'required' => 'A tipologia deve ser informada.'
-                    ]
-                ],
-                'En_CEP' => [
-                    'label' => 'CEP',
-                    'private' => function(){
-                        return !$this->publicLocation;
-                    },
-                ],
-                'En_Nome_Logradouro' => [
-                    'label' => 'Logradouro',
-                    'private' => function(){
-                        return !$this->publicLocation;
-                    },
-                ],
-                'En_Num' => [
-                    'label' => 'Número',
-                    'private' => function(){
-                        return !$this->publicLocation;
-                    },
-                ],
-                'En_Complemento' => [
-                    'label' => 'Complemento',
-                    'private' => function(){
-                        return !$this->publicLocation;
-                    },
-                ],
-                'En_Bairro' => [
-                    'label' => 'Bairro',
-                    'private' => function(){
-                        return !$this->publicLocation;
-                    },
-                ],
-                'En_Municipio' => [
-                    'label' => 'Município',
-                    'private' => function(){
-                        return !$this->publicLocation;
-                    },
-                ],
-                'En_Estado' => [
-                    'label' => 'Estado',
-                    'private' => function(){
-                        return !$this->publicLocation;
-                    },
-                    'type' => 'select',
-
-                    'options' => array(
-                        'AC'=>'Acre',
-                        'AL'=>'Alagoas',
-                        'AP'=>'Amapá',
-                        'AM'=>'Amazonas',
-                        'BA'=>'Bahia',
-                        'CE'=>'Ceará',
-                        'DF'=>'Distrito Federal',
-                        'ES'=>'Espírito Santo',
-                        'GO'=>'Goiás',
-                        'MA'=>'Maranhão',
-                        'MT'=>'Mato Grosso',
-                        'MS'=>'Mato Grosso do Sul',
-                        'MG'=>'Minas Gerais',
-                        'PA'=>'Pará',
-                        'PB'=>'Paraíba',
-                        'PR'=>'Paraná',
-                        'PE'=>'Pernambuco',
-                        'PI'=>'Piauí',
-                        'RJ'=>'Rio de Janeiro',
-                        'RN'=>'Rio Grande do Norte',
-                        'RS'=>'Rio Grande do Sul',
-                        'RO'=>'Rondônia',
-                        'RR'=>'Roraima',
-                        'SC'=>'Santa Catarina',
-                        'SP'=>'São Paulo',
-                        'SE'=>'Sergipe',
-                        'TO'=>'Tocantins',
-                    )
-                ],
-            ]
-        ];
-
-        foreach($metadata as $entity_class => $metas){
-            foreach($metas as $key => $cfg){
-                $def = new \MapasCulturais\Definitions\Metadata($key, $cfg);
-                $app->registerMetadata($def, $entity_class);
-            }
-        }
-    }
-
     protected function _init() {
         parent::_init();
 
         $app = App::i();
-        $this->enqueueScript('app', 'endereco', 'js/endereco.js');
-        $this->enqueueScript('app', 'num-sniic', 'js/num-sniic.js');
 
         $app->hook('view.render(agent/<<create|edit>>):before', function(){
             $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
         });
-        /*$app->hook('mapasculturais.body:before', function(){
-            $this->part('header-sniic');
-        });
-        */
-
-        $app->hook('entity(<<Agent|Space|Event|Project>>).save:after', function() use ($app){
-            if(!$this->getValidationErrors()){
-                $num = strtoupper(substr($this->entityType, 0, 2)) . '-' . $this->id;
-                $this->num_sniic = $num;
-            }
-        });
     }
+    
+    public function getMetadataPrefix() {
+        return '';
+    }
+
+
+    protected function _getAgentMetadata() {
+        return [];
+    }
+    
+    protected function _getSpaceMetadata() {
+        return [];
+    }
+    
+    protected function _getEventMetadata() {
+        return [];
+    }
+    
+    protected function _getProjectMetadata() {
+        return [];
+    }
+    
 }
