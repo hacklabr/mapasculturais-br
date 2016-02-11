@@ -3,7 +3,10 @@ use MapasCulturais\Entities\Registration;
 
 $action = preg_replace("#^(\w+/)#", "", $this->template);
 
-$this->bodyProperties['ng-app'] = "Entity";
+$this->bodyProperties['ng-app'] = "entity.app";
+$this->bodyProperties['ng-controller'] = "EntityController";
+
+$this->jsObject['angularAppDependencies'][] = 'entity.module.project';
 
 $this->addEntityToJs($entity);
 
@@ -41,7 +44,7 @@ $child_entity_request = isset($child_entity_request) ? $child_entity_request : n
                 </div>
             <?php endif; ?>
         </div>
-        <?php $this->part('entity-status', array('entity' => $entity)); ?>
+        <?php $this->part('singles/entity-status', array('entity' => $entity)); ?>
         <!--.header-image-->
         <div class="header-content">
             <div class="avatar <?php if($entity->avatar): ?>com-imagem<?php endif; ?>">
