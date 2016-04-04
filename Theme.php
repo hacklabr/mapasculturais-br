@@ -45,9 +45,23 @@ class Theme extends BaseMinc\Theme{
 
         $app = App::i();
 
+        $this->jsObject['infoboxFields'] .= ',num_sniic';
+
         $app->hook('view.render(agent/<<create|edit>>):before', function(){
             $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
         });
+
+        $app->hook('template(site.search.<<agent|space|event>>-infobox-new-fields-before):begin', function() use($app) {
+            $this->part('infobox-new-fields-before');
+          });
+
+        $app->hook('template(panel.<<agents|spaces|events|projects>>.panel-new-fields-before):begin', function($entity) use($app) {
+            $this->part('panel-new-fields-before', [ 'entity' => $entity ]);
+          });
+
+        $app->hook('controller(panel).extraFields(<<space|project|event>>)', function(&$fields) {
+            $fields[] = 'num_sniic';
+          });
     }
     
     public function getMetadataPrefix() {

@@ -7,6 +7,9 @@ $this->layout = 'panel'
         Olá, <strong><?php echo $app->user->profile->name ?></strong>, bem-vindo ao Mapa da Cultura, o novo cadastro do SNIIC!
         <br/>
         <br/>
+        O Nº SNIIC do seu agente padrão "<?php echo $app->user->profile->name ?>" é <?php echo $app->user->profile->num_sniic ?>.
+        <br/>
+        <br/>
         <small>Clique nos itens abaixo para visualizar, consultar o número SNIIC e editar as informações cadastradas.</small>
     </p>
     
