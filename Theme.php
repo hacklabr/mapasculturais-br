@@ -48,7 +48,7 @@ class Theme extends BaseMinc\Theme{
         $this->jsObject['infoboxFields'] .= ',num_sniic';
 
         $app->hook('view.render(agent/<<create|edit>>):before', function(){
-            $this->jsObject['agentTypes'] = require __DIR__ . '/agent-types.php';
+            $this->jsObject['agentTypes'] = require __DIR__ . '/tipologia-agentes.php';
         });
 
         $app->hook('template(site.search.<<agent|space|event>>-infobox-new-fields-before):begin', function() use($app) {
@@ -84,5 +84,4 @@ class Theme extends BaseMinc\Theme{
     protected function _getProjectMetadata() {
         return [];
     }
-    
 }
