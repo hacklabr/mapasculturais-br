@@ -33,12 +33,6 @@ class Theme extends BaseMinc\Theme{
         return __DIR__;
     }
 
-    public function addEntityToJs(\MapasCulturais\Entity $entity) {
-        parent::addEntityToJs($entity);
-        $this->jsObject['entity']['tipologia_nivel1'] = $entity->tipologia_nivel1;
-        $this->jsObject['entity']['tipologia_nivel2'] = $entity->tipologia_nivel2;
-        $this->jsObject['entity']['tipologia_nivel3'] = $entity->tipologia_nivel3;
-    }
 
     protected function _init() {
         parent::_init();
@@ -46,10 +40,6 @@ class Theme extends BaseMinc\Theme{
         $app = App::i();
 
         $this->jsObject['infoboxFields'] .= ',num_sniic';
-
-        $app->hook('view.render(agent/<<create|edit>>):before', function(){
-            $this->jsObject['agentTypes'] = require __DIR__ . '/tipologia-agentes.php';
-        });
 
         $app->hook('template(site.search.<<agent|space|event>>-infobox-new-fields-before):begin', function() use($app) {
             $this->part('infobox-new-fields-before');
@@ -63,7 +53,7 @@ class Theme extends BaseMinc\Theme{
             $fields[] = 'num_sniic';
           });
     }
-    
+
     public function getMetadataPrefix() {
         return '';
     }
@@ -72,15 +62,15 @@ class Theme extends BaseMinc\Theme{
     protected function _getAgentMetadata() {
         return [];
     }
-    
+
     protected function _getSpaceMetadata() {
         return [];
     }
-    
+
     protected function _getEventMetadata() {
         return [];
     }
-    
+
     protected function _getProjectMetadata() {
         return [];
     }
