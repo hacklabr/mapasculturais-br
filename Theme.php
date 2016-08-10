@@ -74,4 +74,16 @@ class Theme extends BaseMinc\Theme{
     protected function _getProjectMetadata() {
         return [];
     }
+
+    protected function _getFilters(){
+        $ent_filters = parent::_getFilters();
+        $mod_filters = [];
+        foreach ($ent_filters as $entity => $filters) {
+            $mod_filters[$entity] = [];
+            foreach ($filters as $filter)
+                if (!(isset($filter['fieldType']) && $filter['fieldType'] === 'checkbox-verified'))
+                    $mod_filters[$entity][] = $filter;
+        }
+        return $mod_filters;
+    }
 }
