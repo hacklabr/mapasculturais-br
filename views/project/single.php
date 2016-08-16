@@ -197,10 +197,6 @@ $child_entity_request = isset($child_entity_request) ? $child_entity_request : n
         <!-- Image Gallery END -->
     </div>
     <!-- #sobre -->
-    <div id="agenda" class="aba-content">
-        <?php $this->part('agenda', array('entity' => $entity)); ?>
-    </div>
-    <!-- #agenda -->
     <div ng-if="data.projectRegistrationsEnabled" id="inscricoes" class="aba-content">
         <?php if($this->isEditable() || $entity->registrationFrom || $entity->registrationTo): ?>
             <p ng-if="data.isEditable" class="alert info">
@@ -604,6 +600,8 @@ $child_entity_request = isset($child_entity_request) ? $child_entity_request : n
         <?php endif; ?>
     </div>
     <!--#inscritos-->
+    <?php $this->applyTemplateHook('tabs-content','after'); ?>
+
     <?php $this->part('owner', array('entity' => $entity, 'owner' => $entity->owner)) ?>
 </article>
 <div class="sidebar-left sidebar project">
