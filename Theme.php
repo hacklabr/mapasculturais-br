@@ -76,14 +76,41 @@ class Theme extends BaseMinc\Theme{
     }
 
     protected function _getFilters(){
+        $en_estado_filter = [
+            'fieldType' => 'checklist',
+            'label' => 'Estado',
+            'placeholder' => 'Selecione os Estados',
+            'filter' => [
+                'param' => 'En_Estado',
+                'value' => 'IN({val})'
+            ]
+        ];
+
+        $en_municipio_filter = [
+            'fieldType' => 'text',
+            'label' => 'Município',
+            'isInline' => false,
+            'isArray' => false,
+            'placeholder' => 'Selecione os Municípios',
+            'filter' => [
+                'param' => 'En_Municipio',
+                'value' => 'ILIKE(*{val}*)'
+            ]
+        ];
+
         $ent_filters = parent::_getFilters();
         $mod_filters = [];
         foreach ($ent_filters as $entity => $filters) {
             $mod_filters[$entity] = [];
+            if (in_array($entity, ['space', 'agent'])){
+                $mod_filters[$entity][] = $en_estado_filter;
+                $mod_filters[$entity][] = $en_municipio_filter;
+            }
             foreach ($filters as $filter)
                 if (!(isset($filter['fieldType']) && $filter['fieldType'] === 'checkbox-verified'))
                     $mod_filters[$entity][] = $filter;
         }
+
         return $mod_filters;
     }
 }
